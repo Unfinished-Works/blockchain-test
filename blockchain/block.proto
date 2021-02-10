@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package blockchain;
+
+message Header {
+    int64 Ref = 1;
+    int64 ID = 2;
+    bytes PrevHash = 3;
+    int64 Timestamp = 4;
+}
+
+message Block {
+    Header Header = 1;
+    int64 Timestamp = 2;
+}
