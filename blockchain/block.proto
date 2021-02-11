@@ -22,6 +22,7 @@ message Block {
 message Transaction {
     uint64 AccountNonce = 1;
     uint64 Amount = 2;
+    uint64 Fee = 3;
     string Recipient = 4;
     bytes Payload = 5;
     string PublicKey = 6;
