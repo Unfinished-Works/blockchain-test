@@ -14,8 +14,8 @@ message Block {
     Header Header = 1;
     bytes HeaderHash = 2;
     uint64 Timestamp = 3;
-    uint64 Nonce = 4;
-    repeated Transaction tx = 5;
+    repeated Transaction tx = 4;
+    uint64 Nonce = 5;
 }
 
 message Transaction {
