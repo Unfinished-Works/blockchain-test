@@ -27,6 +27,9 @@ var ErrInvaildTransaction = errors.New("Invaild Transaction")
 
 //Hash : Compute the blake3 hash.
 func (x *Transaction) Hash() ([]byte, error) {
+	if !x.verifyStructure() {
+		return nil, ErrInvaildTransaction
+	}
 	buf := make([]byte, 24)
 	h := blake3.New()
 	binary.LittleEndian.PutUint64(buf[0:8], x.GetAccountNonce())
