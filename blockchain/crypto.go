@@ -5,6 +5,7 @@ import (
 	"crypto/rand"
 	"encoding/binary"
 	"errors"
+	"math/big"
 
 	"github.com/Unfinished-Works/blockchain-test/cryptoops"
 	"github.com/zeebo/blake3"
@@ -60,4 +61,29 @@ func (x *Transaction) Sign(privkey *ecdsa.PrivateKey) error {
 	x.S = sString
 	x.PublicKey = cryptoops.ExportPublicKey(&privkey.PublicKey)
 	return nil
+}
+
+//VerifySignature : Verify the signature of the transaction.
+func (x *Transaction) VerifySignature() bool {
+	if !x.verifyStructure() {
+		return false
+	}
+	hash, err := x.Hash()
+	if err != nil {
+		return false
+	}
+	publickey, err := cryptoops.LoadPublicKey(x.PublicKey)
+	if err != nil {
+		return false
+	}
+	var r, s *big.Int
+	_, ok := r.SetString(x.GetR(), 62)
+	if !ok {
+		return false
+	}
+	_, ok = s.SetString(x.GetS(), 62)
+	if !ok {
+		return false
+	}
+	return ecdsa.Verify(publickey, hash, r, s)
 }
