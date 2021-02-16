@@ -18,7 +18,7 @@ func (x *Trie) rawInsert(new *Trie) {
 
 //Insert : Add a node to the Triechain
 func (x *Trie) Insert(ref string, new *Trie) bool {
-	parent, ok := x.findnode(ref)
+	parent, ok := x.Findnode(ref)
 	if !ok {
 		return false
 	}
@@ -26,7 +26,8 @@ func (x *Trie) Insert(ref string, new *Trie) bool {
 	return true
 }
 
-func (x *Trie) findnode(hash string) (*Trie, bool) {
+//Findnode : Search for hash in Triechain
+func (x *Trie) Findnode(hash string) (*Trie, bool) {
 	if x.Hash == hash {
 		return x, true
 	}
@@ -34,7 +35,7 @@ func (x *Trie) findnode(hash string) (*Trie, bool) {
 		return nil, false
 	}
 	for i := range x.Childs {
-		node, ok := x.Childs[i].findnode(hash)
+		node, ok := x.Childs[i].Findnode(hash)
 		if ok {
 			return node, true
 		}
