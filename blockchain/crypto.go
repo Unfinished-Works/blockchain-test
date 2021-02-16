@@ -6,6 +6,7 @@ import (
 	"encoding/binary"
 	"errors"
 
+	"github.com/Unfinished-Works/blockchain-test/cryptoops"
 	"github.com/zeebo/blake3"
 )
 
@@ -57,5 +58,6 @@ func (x *Transaction) Sign(privkey *ecdsa.PrivateKey) error {
 	sString := s.Text(62)
 	x.R = rString
 	x.S = sString
+	x.PublicKey = cryptoops.ExportPublicKey(&privkey.PublicKey)
 	return nil
 }
