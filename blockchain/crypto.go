@@ -1,6 +1,8 @@
 package blockchain
 
 import (
+	"crypto/ecdsa"
+	"crypto/rand"
 	"encoding/binary"
 	"errors"
 
@@ -39,4 +41,21 @@ func (x *Transaction) Hash() ([]byte, error) {
 	h.Write(x.GetPayload())
 	h.Write([]byte(x.GetRecipient()))
 	return h.Sum(nil), nil
+}
+
+//Sign : Sign the transaction with the given private key.
+func (x *Transaction) Sign(privkey *ecdsa.PrivateKey) error {
+	hash, err := x.Hash()
+	if err != nil {
+		return err
+	}
+	r, s, err := ecdsa.Sign(rand.Reader, privkey, hash)
+	if err != nil {
+		return err
+	}
+	rString := r.Text(62)
+	sString := s.Text(62)
+	x.R = rString
+	x.S = sString
+	return nil
 }
