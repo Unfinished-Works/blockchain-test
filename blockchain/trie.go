@@ -1,5 +1,12 @@
 package blockchain
 
+import (
+	"io"
+
+	"github.com/Unfinished-Works/blockchain-test/blockstore"
+	"google.golang.org/protobuf/proto"
+)
+
 /*
 //Trie : tree node based BlockStore
 type Trie struct {
@@ -12,10 +19,31 @@ type Trie struct {
 
 //NewTrie : Init New Trie
 func NewTrie() *Trie {
+	//GenesisBlock : first Block
+	var fs = blockstore.InitFileStore("blocks")
+	var GenesisBlock = func() *Block {
+		f, err := fs.Get(GenesisBlockHash)
+		if err != nil {
+			panic(err)
+		}
+		b, err := io.ReadAll(f)
+		if err != nil {
+			panic(err)
+		}
+		gblock := new(Block)
+		gblock.Header = new(Header)
+		err = proto.Unmarshal(b, gblock)
+		if err != nil {
+			panic(err)
+		}
+		return gblock
+	}()
 	return &Trie{
 		IsRoot: true,
 		Depth:  0,
-		Hash:   "",
+		Hash:   GenesisBlockHash,
+		Block:  GenesisBlock,
+		Childs: nil,
 	}
 }
 

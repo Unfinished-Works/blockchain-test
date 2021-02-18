@@ -12,7 +12,7 @@ import (
 //InitBlock : initialize Genesis Block
 func InitBlock() {
 	fs := blockstore.InitFileStore("blocks")
-	if _, err := fs.Get("ace8b9baeed95ad0fd8b58e010a3e99d553af964779032e35daf6ea330a93a6d"); err == nil {
+	if _, err := fs.Get(blockchain.GenesisBlockHash); err == nil {
 		return
 	}
 	GenesisBlock := new(blockchain.Block)
