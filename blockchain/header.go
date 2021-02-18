@@ -6,7 +6,7 @@ import (
 	"github.com/zeebo/blake3"
 )
 
-const firstBlock = "ace8b9baeed95ad0fd8b58e010a3e99d553af964779032e35daf6ea330a93a6d"
+const genesisBlockHash = "ace8b9baeed95ad0fd8b58e010a3e99d553af964779032e35daf6ea330a93a6d"
 
 //Hash : Compute the blake3 hash.
 func (x *Header) Hash() []byte {
