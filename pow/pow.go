@@ -20,3 +20,16 @@ func HashFunc(data []byte, nonce uint64) []byte {
 	buf = h.Sum(nil)[:16]
 	return argon2.IDKey(data, buf, 1, 64*1024, 4, 32)
 }
+
+//CMP : Compare hash with Difficulty
+func CMP(hash []byte, Difficulty uint64) bool {
+	if Difficulty > 32 {
+		Difficulty = 32
+	}
+	for i := 0; i < int(Difficulty); i++ {
+		if hash[i] != 0 {
+			return false
+		}
+	}
+	return true
+}
