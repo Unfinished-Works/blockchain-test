@@ -4,15 +4,15 @@ import "github.com/Unfinished-Works/blockchain-test/blockchain"
 
 //Trie : tree node based BlockStore
 type Trie struct {
-	isroot bool
-	depth  int
+	IsRoot bool
+	Depth  int
 	Hash   string
 	Block  *blockchain.Block
 	Childs []*Trie
 }
 
 func (x *Trie) rawInsert(new *Trie) {
-	new.depth = x.depth + 1
+	new.Depth = x.Depth + 1
 	x.Childs = append(x.Childs, new)
 }
 
