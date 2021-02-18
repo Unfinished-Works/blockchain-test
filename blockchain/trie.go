@@ -4,6 +4,7 @@ import (
 	"io"
 
 	"github.com/Unfinished-Works/blockchain-test/blockstore"
+	"github.com/Unfinished-Works/blockchain-test/pow"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -36,6 +37,7 @@ func NewTrie() *Trie {
 		if err != nil {
 			panic(err)
 		}
+		pow.CMP(b, gblock.Header.Difficulty)
 		return gblock
 	}()
 	return &Trie{
