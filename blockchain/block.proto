@@ -4,7 +4,7 @@ package blockchain;
 //option go_package =  "github.com/Unfinished-Works/blockchain-test/blockchain";
 
 message Header {
-    uint64 Ref = 1;
+    bytes Ref = 1;
     uint64 ID = 2;
     bytes PrevHash = 3;
     uint64 Difficulty = 4;
