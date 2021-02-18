@@ -10,6 +10,15 @@ type Trie struct {
 	Childs []*Trie
 }*/
 
+//NewTrie : Init New Trie
+func NewTrie() *Trie {
+	return &Trie{
+		IsRoot: true,
+		Depth:  0,
+		Hash:   "",
+	}
+}
+
 func (x *Trie) rawInsert(new *Trie) {
 	new.Depth = x.Depth + 1
 	x.Childs = append(x.Childs, new)

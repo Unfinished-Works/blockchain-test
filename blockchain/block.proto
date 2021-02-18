@@ -14,7 +14,6 @@ message Trie {
 message Header {
     bytes Ref = 1;
     uint64 ID = 2;
-    bytes PrevHash = 3;
     uint64 Difficulty = 4;
     uint64 Timestamp = 5;
 }
@@ -25,6 +24,7 @@ message Block {
     bytes HeaderHash = 3;
     repeated Transaction tx = 5;
     bytes data = 6;
+    string SealedBy = 7;
 }
 
 message Transaction {
