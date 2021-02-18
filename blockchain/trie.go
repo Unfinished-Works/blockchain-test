@@ -1,7 +1,6 @@
-package trie
+package blockchain
 
-import "github.com/Unfinished-Works/blockchain-test/blockchain"
-
+/*
 //Trie : tree node based BlockStore
 type Trie struct {
 	IsRoot bool
@@ -9,7 +8,7 @@ type Trie struct {
 	Hash   string
 	Block  *blockchain.Block
 	Childs []*Trie
-}
+}*/
 
 func (x *Trie) rawInsert(new *Trie) {
 	new.Depth = x.Depth + 1

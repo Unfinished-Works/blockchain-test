@@ -3,6 +3,14 @@ syntax = "proto3";
 package blockchain;
 //option go_package =  "github.com/Unfinished-Works/blockchain-test/blockchain";
 
+message Trie {
+    bool IsRoot = 1;
+    uint64 Depth = 2;
+    string Hash = 3;
+    Block Block = 4;
+    repeated Trie Childs = 5;
+}
+
 message Header {
     bytes Ref = 1;
     uint64 ID = 2;
